@@ -5,19 +5,24 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import { DonationProvider } from './src/components/DonationContext'; 
+import DiscoveryStack from './src/navigation/DiscoveryStack';
 import DashboardScreen from './src/screens/DashboardScreen';
 import DonationHistoryScreen from './src/screens/DonationHistoryScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
-import DiscoveryStack from './src/navigation/DiscoveryStack';
-import { auth } from './firebase'; 
+import { auth } from './src/firebaseConfig'; 
 import { onAuthStateChanged } from 'firebase/auth';
-
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+const AuthStack = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Login" component={LoginScreen} />
+    <Stack.Screen name="SignUp" component={SignUpScreen} />
+  </Stack.Navigator>
+);
 
 const MainTabNavigator = () => (
   <Tab.Navigator
@@ -26,7 +31,7 @@ const MainTabNavigator = () => (
         let iconName;
 
         switch (route.name) {
-          case 'Dashboard':
+          case 'Home':
             iconName = focused ? 'home' : 'home-outline';
             break;
           case 'Discovery':
@@ -49,18 +54,11 @@ const MainTabNavigator = () => (
       },
     })}
   >
-    <Tab.Screen name='Dashboard' component={DashboardScreen} />
+    <Tab.Screen name='Home' component={DashboardScreen} />
     <Tab.Screen name='Discovery' component={DiscoveryStack} />
     <Tab.Screen name='History' component={DonationHistoryScreen} />
     <Tab.Screen name='Profile' component={ProfileScreen} />
   </Tab.Navigator>
-);
-
-const AuthStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="SignUp" component={SignUpScreen} />
-  </Stack.Navigator>
 );
 
 export default function App() {
