@@ -49,6 +49,7 @@ const MainTabNavigator = () => (
       },
     })}
   >
+    
     <Tab.Screen name='Dashboard' component={DashboardScreen} />
     <Tab.Screen name='Discovery' component={DiscoveryStack} />
     <Tab.Screen name='History' component={DonationHistoryScreen} />

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CharityDonationTracker",
-    "slug": "CharityDonationTracker",
+    "name": "CharityHub",
+    "slug": "CharityHub",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/defaultLogo.png",
